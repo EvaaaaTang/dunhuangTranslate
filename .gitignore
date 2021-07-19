@@ -1,0 +1,7 @@
+tempresults/
+testresults/
+saved_model/
+smplparameter2mesh/results/
+.vscode/
+__MACOSX/
+__pycache__/
