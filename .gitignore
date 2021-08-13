@@ -1,0 +1,16 @@
+tempresults/
+testresults/
+saved_model/
+smplparameter2mesh/results/
+smplparameter2mesh/testobjs/
+smplparameter2mesh/test/
+smplparameter2mesh/images/
+.vscode/
+__MACOSX/
+__pycache__/
+ballet_jazz/
+motions/
+testresimages/
+traindata/
+388/
+model_transfer/
