@@ -12,7 +12,11 @@ joblib
 
 ### AIST训练方式
 
-下载motions文件夹解压到根目录下
+下载motions文件夹
+
+地址：https://cloud.tsinghua.edu.cn/f/fd99c0e5b4274789a975/
+
+解压到根目录下
 
 训练：
 
