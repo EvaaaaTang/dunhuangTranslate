@@ -21,21 +21,21 @@ def lineset3():
 def lineset4():
   freestyle_settings.linesets['LineSet'].select_suggestive_contour = True
 
-for i in range(367):
+for i in range(248):
 # for i in range(1):
   # body
-  body_path = f"D:/HarvardCamlab/code/smplparameter2mesh/testobjs/objnew_{i}.obj"
+  body_path = f"D:/HarvardCamlab/code/smplparameter2mesh/testDFault/testobjs/trueobj_{i}.obj"
   bpy.ops.import_scene.obj(filepath=body_path)
-  body_obj = bpy.context.selected_objects[0]
+  #body_obj = bpy.context.selected_objects[0]
   # body_obj.location = Vector((0.126892, 8.78048, -0.939054))
 #  body_obj.data.materials[0] = bpy.data.materials.get("emit")
  # lineset0()
   s="%03d" % i
-  bpy.context.scene.render.filepath = f"D:/HarvardCamlab/code/testresimages/new1/test_{s}.png" 
+  bpy.context.scene.render.filepath = f"D:/HarvardCamlab/code/smplparameter2mesh/testDFault/restrueimages/frame_{s}.png" 
   bpy.ops.render.render(write_still=True)
 #  lineset1()
 #  bpy.context.scene.render.filepath = "D:/HarvardCamlab/code/smplparameter2mesh/images/%07d_sbc.png" % i
-#  bpy.ops.render.render(write_still=True)
+#  bpy.ops.render.render(write_still=True)   
 #  lineset2()
 #  bpy.context.scene.render.filepath = "D:/HarvardCamlab/code/smplparameter2mesh/images/%07d_sbcsc.png" % i
 #  bpy.ops.render.render(write_still=True)
@@ -88,5 +88,5 @@ for i in range(367):
   # bpy.context.scene.render.filepath = "E:/#Internships/Adobe2021/NPRWorkflow/freestyle/both/%07d_sbcscrv.png" % i
   # bpy.ops.render.render(write_still=True)
   # bpy.ops.object.delete()
-  bpy.data.objects[0].select_set(True)
+  bpy.data.objects[2].select_set(True)
   bpy.ops.object.delete()

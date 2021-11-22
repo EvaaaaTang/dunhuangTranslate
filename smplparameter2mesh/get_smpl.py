@@ -201,55 +201,36 @@ if __name__ == '__main__':
   np.random.seed(2021)
   beta=np.random.rand(10)*0.1
   trans = np.zeros(smpl.trans_shape)
-  inputdata=np.load('../input3.npy')[0]
-  outputdata=np.load('../output3.npy')[0]
-  expectdata=np.load('../expect3.npy')[0]
-  # for i in range(inputdata.shape[0]):
-  #     smpl.set_params(beta=beta, pose=inputdata[i], trans=trans)
-  #     joints=smpl.J_regressor.dot(smpl.verts)
-  #     j=i
-  #     if i>=3:
-  #       j=i+60
-  #     smpl.save_to_obj(f'./test/clip1_test_3_{j}.obj')
-  # for i in range(outputdata.shape[0]):
-  #     smpl.set_params(beta=beta, pose=outputdata[i], trans=trans)
-  #     joints=smpl.J_regressor.dot(smpl.verts)
-  #     smpl.save_to_obj(f'./test/clip1_test_3_{i+3}.obj')   
-  # for i in range(expectdata.shape[0]):
-  #     smpl.set_params(beta=beta, pose=expectdata[i], trans=trans)
-  #     joints=smpl.J_regressor.dot(smpl.verts)
-  #     smpl.save_to_obj(f'./test/clip1_test_3_expect_{i}.obj')   
-  # with open('./ballet_jazz/gJB_sBM_cAll_d07_mJB0_ch01.pkl', 'rb') as f:
-  #   info = pickle.load(f)  
-  #   pose=info['smpl_poses'][10]
-  #   print(pose.shape)
-  # #pose=np.random.rand(72)*0.1
-  # # print(pose.shape
-  # for j in range(300):
-  #   path='../input_'+str(j)+'.npy'   #path='/root/……/aus_openface.pkl'   pkl文件所在路径
-  # # f=open(path,'rb')
-  # # data=pickle.load(f)
-  #   data=np.load(path)
-  #   data=data[0]
-  #   for i in range(data.shape[0]):
-  #     smpl.set_params(beta=beta, pose=data[0], trans=trans)
-  #     joints=smpl.J_regressor.dot(smpl.verts)
-  #     smpl.save_to_obj(f'./results/dance_in{j}_{i}.obj')
-  numbers=[0,60,120,180,240,360,480]
+
+
+  # GET OBJS FROM AIST VALIDATION DATA
+  numbers=[0,61,122,183,244,305,366]
   cnt=0
   for i in range(6):
-    with open(f'../kinectRivised/fps{numbers[i]}.pkl','rb') as f:
-      start=pickle.load(f)['pose'].detach().numpy()
+    with open(f'../testdata/gMH/pkl/fps_{numbers[i]}.pkl','rb') as f:
+      start=pickle.load(f).detach().numpy()
     smpl.set_params(beta=beta,pose=start,trans=trans)
-    smpl.save_to_obj(f'./testobjs/objnew_{cnt}.obj')
+    smpl.save_to_obj(f'../testdata/gMH/testobjs/obj_{cnt}.obj')
     cnt+=1
-    middle=np.load(f'../testresults/kinect_outputnew_{numbers[i]}_{numbers[i+1]}.npy')[0]
+    middle=np.load(f'../testdata/gMH/testoutputpkl/testoutput_{numbers[i]}_{numbers[i+1]}.npy')[0]
     for j in range(middle.shape[0]):
       data=middle[j]
       smpl.set_params(beta=beta,pose=data,trans=trans)
-      smpl.save_to_obj(f'./testobjs/objnew_{cnt}.obj')
+      smpl.save_to_obj(f'../testdata/gMH/testobjs/obj_{cnt}.obj')
       cnt+=1
-  with open('../kinectRivised/fps480.pkl','rb') as f:
-    data=pickle.load(f)['pose'].detach().numpy()
+  with open('../testdata/gMH/pkl/fps_366.pkl','rb') as f:
+    data=pickle.load(f).detach().numpy()
     smpl.set_params(beta=beta,pose=data,trans=trans)
-    smpl.save_to_obj(f'./testobjs/objnew_{cnt}.obj')
+    smpl.save_to_obj(f'../testdata/gMH/testobjs/obj_{cnt}.obj')
+  for i in range(367):
+    with open(f'../testdata/gMH/pkl/fps_{i}.pkl','rb') as f:
+      obj=pickle.load(f).detach().numpy()
+    smpl.set_params(beta=beta,pose=obj,trans=trans)
+    smpl.save_to_obj(f'../testdata/gMH/testobjs/trueobj_{i}.obj')
+
+# GET OBJS FROM NPY DATA IN DFAUST
+  data=np.load('./testDFault/testonelegjump.npy')
+  for i in range(248):
+    obj=data[i]
+    smpl.set_params(beta=beta,pose=obj,trans=trans)
+    smpl.save_to_obj(f'./testDFault/testobjs/trueobj_{i}.obj')
